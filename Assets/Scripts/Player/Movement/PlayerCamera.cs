@@ -7,11 +7,9 @@ namespace Player.Movement
 {
     public class PlayerCamera : MonoBehaviour
     {
-        //TODO: quake like camera
-
-        [SerializeField] private CinemachineVirtualCamera playerCamera;
         [SerializeField] private float lookSpeed = 2f;
         [SerializeField] private float lookXLimit = 90f;
+        [SerializeField] private CinemachineVirtualCamera playerCamera;
         private float _rotationX;
         private PlayerInput _playerInput;
 

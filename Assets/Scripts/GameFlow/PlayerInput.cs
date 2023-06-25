@@ -21,8 +21,8 @@ namespace GameFlow
 
         public bool IsPressed(string mapName, string actionName)
         {
-            return playerInput.FindActionMap(mapName).FindAction(actionName).IsPressed();
-        } 
+            return GetAction(mapName, actionName).IsPressed();
+        }
 
         public T GetValue<T>(string mapName, string actionName) where T : struct
         {

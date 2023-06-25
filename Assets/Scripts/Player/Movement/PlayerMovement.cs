@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using GameFlow;
+using UnityEngine;
 using VContainer;
-using PlayerInput = GameFlow.PlayerInput;
 
 namespace Player.Movement
 {
@@ -28,7 +27,6 @@ namespace Player.Movement
         {
             _playerInput = playerInput;
         }
-        //TODO: quake like movement
 
         private void Awake()
         {
