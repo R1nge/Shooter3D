@@ -9,8 +9,10 @@ namespace Player.Movement
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float walkingSpeed = 7.5f;
+        [SerializeField] private float runningSpeed = 15f;
         [SerializeField] private float jumpHeight;
         [SerializeField] private float gravity;
+        private bool _isWalking;
         private Vector2 _move;
         private Vector3 _moveDirection = Vector3.zero;
         private CharacterController _characterController;
@@ -19,6 +21,7 @@ namespace Player.Movement
         private const string PLAYER_MAP = "Player";
         private const string JUMP = "Jump";
         private const string MOVE = "Move";
+        private const string WALKING = "IsWalking";
 
         [Inject]
         private void Construct(PlayerInput playerInput)
@@ -47,8 +50,15 @@ namespace Player.Movement
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
+
+            _isWalking = _playerInput.IsPressed(PLAYER_MAP, WALKING);
+
+            float speedHorizontal = _isWalking ? walkingSpeed : runningSpeed;
+            float speedVertical = _isWalking ? walkingSpeed : runningSpeed;
+
             float movementDirectionY = _moveDirection.y;
-            _moveDirection = forward * _move.y + right * _move.x;
+            
+            _moveDirection = forward * (_move.y * speedVertical) + right * (_move.x * speedHorizontal);
 
             if (_characterController.isGrounded && _playerInput.IsPressed(PLAYER_MAP, JUMP))
             {
